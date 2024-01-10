@@ -1,12 +1,14 @@
 'use client'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signIn } from 'next-auth/react';
 
 export default function LoginWithGoogle(params) {
+  
   return (
     <button
-    onClick={() => {}}
+    onClick={() => signIn('google', {redirect: true, callbackUrl:'/'})}
     className='flex gap-3 justify-center items-center bg-white shadow text-center w-full py-4'
   >
     <FontAwesomeIcon icon={faGoogle} className='h-6' />
