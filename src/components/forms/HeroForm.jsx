@@ -1,22 +1,28 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
-export default function HeroForm() {
+export default function HeroForm({ user }) {
+  const router = useRouter()
 
   async function handleSubmit(ev) {
     ev.preventDefault();
     const form = ev.target;
     const input = form.querySelector('input');
     const username = input.value;
+    const callbackUrl = '/account?desiredUsername=' + username;
     // no much need since the input is `required`
     if (!username) {
       console.log('no username', input);
       return;
     }
+    if (user) {
+      router.push(callbackUrl);
+    }
     await signIn('google', {
       redirect: true,
-      callbackUrl: '/account?username=' + username,
+      callbackUrl: callbackUrl,
     });
   }
 
