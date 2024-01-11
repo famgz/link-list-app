@@ -1,6 +1,6 @@
 import HeroForm from '@/components/forms/HeroForm';
 import { getServerSession } from 'next-auth';
-import { authOptions } from './api/auth/[...nextauth]/route';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -8,7 +8,7 @@ export default async function Home() {
     <main>
       <section className='pt-32'>
         <div className='max-w-md mb-8'>
-          <h1 className='text-6xl font-bold'>
+          <h1 className='text-6xl font-bold text-slate-800'>
             Your single link <br /> for everything
           </h1>
           <h2 className='text-slate-400 text-xl mt-6'>

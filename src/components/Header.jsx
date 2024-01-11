@@ -10,13 +10,13 @@ export default async function Header() {
 
   return (
     <header className='bg-white border-b py-4'>
-      <div className='max-w-4xl flex justify-between mx-auto px-6'>
+      <div className='max-w-4xl flex justify-between mx-auto px-6 font-semibold'>
         <div className='flex items-center gap-6'>
           <Link href={'/'} className='flex items-center gap-2 text-blue-500'>
             <FontAwesomeIcon icon={faLink} className='text-blue-500' />
             <span className='font-bold'>LinkList</span>
           </Link>
-          <nav className='flex items-center gap-4 text-slate-500 texty-sm'>
+          <nav className='flex items-center gap-4 text-slate-500 text-sm'>
             <Link href={'/about'}>About</Link>
             <Link href={'/pricing'}>Pricing</Link>
             <Link href={'/contact'}>Contact</Link>
@@ -34,7 +34,7 @@ export default async function Header() {
             <>
               <Link href={'/account'}>
                 Hello,{' '}
-                <span className='font-semibold'>{session?.user?.name}</span>
+                <span className=''>{session?.user?.name}</span>
               </Link>
               <LogoutButton />
             </>

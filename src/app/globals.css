@@ -5,3 +5,11 @@
 body {
   @apply bg-gray-100;
 }
+
+.account-links {
+  @apply flex items-center gap-4 text-gray-600 font-semibold;
+
+  svg {
+    @apply h-6 w-6 text-gray-600;
+  }
+}
