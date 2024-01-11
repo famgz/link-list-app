@@ -7,9 +7,37 @@ body {
 }
 
 .account-links {
-  @apply flex items-center gap-4 text-gray-600 font-semibold;
+  @apply flex items-center gap-4 p-2 text-gray-500 font-semibold;
+
+  &.account-current {
+    @apply text-blue-500;
+  }
 
   svg {
-    @apply h-6 w-6 text-gray-600;
+    @apply h-6 w-6;
   }
+}
+
+.radio-togglers {
+  @apply inline-flex p-1 bg-gray-200 font-bold;
+
+  div {
+    @apply flex items-center gap-2 p-2 px-4 text-gray-500;
+  }
+
+  input[type='radio'] {
+    @apply hidden;
+
+    &:checked + div {
+      @apply bg-white text-blue-500;
+    }
+  }
+}
+
+.settings-label {
+  @apply uppercase text-gray-400 text-xs font-semibold;
+}
+
+.settings-input {
+  @apply bg-gray-100 w-full block p-2 mb-2;
 }
