@@ -6,28 +6,30 @@ import { Page } from '@/models/Page';
 import mongoose from 'mongoose';
 import PageSettingsForm from '@/components/forms/PageSettingsForm';
 
-export default async function AccountPage({ searchParams, ...rest }) {
+async function AccountPage({ searchParams, ...rest }) {
   const session = await getServerSession(authOptions);
+  const user = session?.user;
   const desiredUsername = searchParams?.desiredUsername;
-  
+
   // not logged in, redirect to home page
   if (!session) {
     return redirect('/');
   }
 
-  await mongoose.connect(process.env.MONGODB_URI)
+  await mongoose.connect(process.env.MONGODB_URI);
 
-  const page = await Page.findOne({owner: session?.user?.email})
+  const page = await Page.findOne({ owner: session?.user?.email });
 
-  if(page) {
+  // Logged in but no page name was chosen yet
+  if (!page) {
     return (
-      <PageSettingsForm page={page}/>
-    )
+      <div>
+        <UsernameForm desiredUsername={desiredUsername} />
+      </div>
+    );
   }
 
-  return (
-    <div>
-      <UsernameForm desiredUsername={desiredUsername} />
-    </div>
-  );
+  return <PageSettingsForm page={page} user={user} />;
 }
+
+export default AccountPage;

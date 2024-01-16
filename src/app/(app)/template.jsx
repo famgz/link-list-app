@@ -5,6 +5,7 @@ import { getServerSession } from 'next-auth';
 import { Lato } from 'next/font/google';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import { Toaster } from 'react-hot-toast';
 
 const lato = Lato({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -24,6 +25,7 @@ export default async function AppTemplate({ children, ...rest }) {
   return (
     <html lang='en'>
       <body className={lato.className}>
+        <Toaster />
         <main className='flex min-h-screen'>
           <aside className='bg-white w-48 p-4 shadow'>
             <div className='rounded-full overflow-hidden aspect-square w-24 mx-auto'>
