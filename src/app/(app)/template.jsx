@@ -1,6 +1,7 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import '@/app/globals.css';
 import AppSidebar from '@/components/layout/AppSidebar';
+import SectionBox from '@/components/layout/SectionBox';
 import { getServerSession } from 'next-auth';
 import { Lato } from 'next/font/google';
 import Image from 'next/image';
@@ -27,7 +28,7 @@ export default async function AppTemplate({ children, ...rest }) {
       <body className={lato.className}>
         <Toaster />
         <main className='flex min-h-screen'>
-          <aside className='bg-white w-48 p-4 shadow'>
+          <aside className='bg-white w-48 p-4 pt-6 shadow'>
             <div className='rounded-full overflow-hidden aspect-square w-24 mx-auto'>
               <Image
                 src={user.image}
@@ -42,9 +43,7 @@ export default async function AppTemplate({ children, ...rest }) {
               <AppSidebar />
             </div>
           </aside>
-          <div className='grow'>
-            <div className='bg-white m-8 p-4 shadow-lg'>{children}</div>
-          </div>
+          <div className='grow'>{children}</div>
         </main>
       </body>
     </html>

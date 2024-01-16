@@ -5,6 +5,7 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { Page } from '@/models/Page';
 import mongoose from 'mongoose';
 import PageSettingsForm from '@/components/forms/PageSettingsForm';
+import PageButtonsForm from '@/components/forms/PageButtonsForm';
 
 async function AccountPage({ searchParams, ...rest }) {
   const session = await getServerSession(authOptions);
@@ -18,7 +19,8 @@ async function AccountPage({ searchParams, ...rest }) {
 
   await mongoose.connect(process.env.MONGODB_URI);
 
-  const page = await Page.findOne({ owner: session?.user?.email });
+  let page = await Page.findOne({ owner: session?.user?.email });
+  page = JSON.parse(JSON.stringify(page));
 
   // Logged in but no page name was chosen yet
   if (!page) {
@@ -29,7 +31,12 @@ async function AccountPage({ searchParams, ...rest }) {
     );
   }
 
-  return <PageSettingsForm page={page} user={user} />;
+  return (
+    <>
+      <PageSettingsForm page={page} user={user} />
+      <PageButtonsForm page={page} user={user} />
+    </>
+  );
 }
 
 export default AccountPage;

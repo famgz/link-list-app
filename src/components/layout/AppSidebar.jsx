@@ -12,7 +12,7 @@ export default function AppSidebar() {
   const path = usePathname();
 
   return (
-    <nav className='inline-flex flex-col text-center mt-8 gap-3'>
+    <nav className='inline-flex flex-col text-center mt-6 gap-3'>
       <Link
         href='/account'
         className={

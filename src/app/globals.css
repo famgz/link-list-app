@@ -46,3 +46,8 @@ label, input {
 .settings-input {
   @apply bg-gray-100 w-full block p-2 mb-2;
 }
+
+.sortable-ghost {
+  opacity: .3;
+  /* @apply bg-gray-300; */
+}

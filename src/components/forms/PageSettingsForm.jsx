@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import SectionBox from '../layout/SectionBox';
 
 export default function PageSettingsForm({ page, user }) {
   const [bgType, setBgType] = useState(page.bgType);
@@ -70,57 +71,61 @@ export default function PageSettingsForm({ page, user }) {
   }
 
   return (
-    <div className='-m-4'>
-      <form action={saveBaseSettings}>
-        <div
-          className='bg-gray-300 min-h-[300px] py-4 flex justify-center items-center bg-cover bg-center'
-          style={
-            bgType === 'color'
-              ? { backgroundColor: bgColor }
-              : { backgroundImage: `url(${bgImage})` }
-          }
-        >
-          <div>
-            <RadioTogglers
-              defaultValue={page.bgType}
-              options={[
-                { value: 'color', icon: faPalette, label: 'Color' },
-                { value: 'image', icon: faImage, label: 'Image' },
-              ]}
-              onChange={(val) => setBgType(val)}
-            />
-            {bgType === 'color' && (
-              <div className='bg-gray-200 shadow text-gray-700 p-2 mt-2 cursor-pointer'>
-                <div className='flex justify-center gap-2'>
-                  <label>Background color</label>
-                  <input
-                    type='color'
-                    name='bgColor'
-                    onChange={(ev) => setBgColor(ev.target.value)}
-                    defaultValue={page.bgColor}
-                  />
+    <div className=''>
+      <SectionBox>
+        <form action={saveBaseSettings}>
+          <div
+            className='bg-gray-300 min-h-[300px] py-4 -m-4 flex justify-center items-center bg-cover bg-center'
+            style={
+              bgType === 'color'
+                ? { backgroundColor: bgColor }
+                : { backgroundImage: `url(${bgImage})` }
+            }
+          >
+            <div>
+              <RadioTogglers
+                defaultValue={page.bgType}
+                options={[
+                  { value: 'color', icon: faPalette, label: 'Color' },
+                  { value: 'image', icon: faImage, label: 'Image' },
+                ]}
+                onChange={(val) => setBgType(val)}
+              />
+              {bgType === 'color' && (
+                <div className='bg-gray-200 shadow text-gray-700 p-2 mt-2 cursor-pointer'>
+                  <div className='flex justify-center gap-2'>
+                    <label>Background color</label>
+                    <input
+                      type='color'
+                      name='bgColor'
+                      onChange={(ev) => setBgColor(ev.target.value)}
+                      defaultValue={page.bgColor}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-            {bgType === 'image' && (
-              <div className='flex justify-center'>
-                <label className='flex gap-2 items-center cursor-pointer bg-white shadow px-4 py-2 mt-2 text-gray-700'>
-                  <input type='hidden' name='bgImage' value={bgImage} />
-                  <input
-                    className='hidden'
-                    type='file'
-                    onChange={handleCoverImageChange}
-                    accept='image/png, image/gif, image/jpeg'
-                  />
-                  <FontAwesomeIcon icon={faCloudArrowUp} className='h-6 w-6' />
-                  <span>Change image</span>
-                </label>
-              </div>
-            )}
+              )}
+              {bgType === 'image' && (
+                <div className='flex justify-center'>
+                  <label className='flex gap-2 items-center cursor-pointer bg-white shadow px-4 py-2 mt-2 text-gray-700'>
+                    <input type='hidden' name='bgImage' value={bgImage} />
+                    <input
+                      className='hidden'
+                      type='file'
+                      onChange={handleCoverImageChange}
+                      accept='image/png, image/gif, image/jpeg'
+                    />
+                    <FontAwesomeIcon
+                      icon={faCloudArrowUp}
+                      className='h-6 w-6'
+                    />
+                    <span>Change image</span>
+                  </label>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-          <div className='flex justify-center w-[180px] h-[180px] relative -mb-12 -top-12 mx-auto'>
-            <div className='flex items-center w-[180px] h-[180px] overflow-hidden rounded-full border-4 border-white shadow shadow-black/30'>
+          <div className='flex justify-center w-[140px] h-[140px] relative -mb-12 -top-12 mx-auto'>
+            <div className='flex items-center w-[140px] h-[140px] overflow-hidden rounded-full border-4 border-white shadow shadow-black/30'>
               <Image
                 src={avatarImage}
                 alt='avatar'
@@ -145,49 +150,50 @@ export default function PageSettingsForm({ page, user }) {
               id='avatarIn'
               className='hidden'
             />
-            <input type="hidden" name="avatar" value={avatarImage} />
+            <input type='hidden' name='avatar' value={avatarImage} />
           </div>
-        <div className='p-4'>
-          <label className='settings-label' htmlFor='nameIn'>
-            Display name
-          </label>
-          <input
-            name='displayName'
-            defaultValue={page.displayName}
-            id='nameIn'
-            className='settings-input'
-            type='text'
-            placeholder='John Doe'
-          />
+          <div className='p-0'>
+            <label className='settings-label' htmlFor='nameIn'>
+              Display name
+            </label>
+            <input
+              name='displayName'
+              defaultValue={page.displayName}
+              id='nameIn'
+              className='settings-input'
+              type='text'
+              placeholder='John Doe'
+            />
 
-          <label className='settings-label' htmlFor='locationIn'>
-            Location
-          </label>
-          <input
-            name='location'
-            defaultValue={page.location}
-            id='locationIn'
-            className='settings-input'
-            type='text'
-            placeholder='Somewhere in the world'
-          />
+            <label className='settings-label' htmlFor='locationIn'>
+              Location
+            </label>
+            <input
+              name='location'
+              defaultValue={page.location}
+              id='locationIn'
+              className='settings-input'
+              type='text'
+              placeholder='Somewhere in the world'
+            />
 
-          <label className='settings-label' htmlFor='bioIn'>
-            Bio
-          </label>
-          <textarea
-            name='bio'
-            defaultValue={page.bio}
-            id='bioIn'
-            className='settings-input'
-            placeholder='Your bio goes here...'
-          />
-          <SubmitButton className='max-w-[200px]'>
-            <FontAwesomeIcon icon={faSave} className='h-4 w-4' />
-            <span>Save</span>
-          </SubmitButton>
-        </div>
-      </form>
+            <label className='settings-label' htmlFor='bioIn'>
+              Bio
+            </label>
+            <textarea
+              name='bio'
+              defaultValue={page.bio}
+              id='bioIn'
+              className='settings-input'
+              placeholder='Your bio goes here...'
+            />
+            <SubmitButton className='max-w-[200px]'>
+              <FontAwesomeIcon icon={faSave} className='h-5 w-5' />
+              <span>Save</span>
+            </SubmitButton>
+          </div>
+        </form>
+      </SectionBox>
     </div>
   );
 }

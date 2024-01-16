@@ -10,6 +10,7 @@ const PageSchema = new Schema(
     bgType: { type: String, enum: ['color', 'image'], default: 'color' },
     bgColor: { type: String, default: '#000' },
     bgImage: { type: String, default: '' },
+    buttons: { type: Object, default: {} },
   },
   { timestamps: true }
 );
