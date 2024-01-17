@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import SectionBox from '../layout/SectionBox';
+import fileUpload from '@/libs/fileUpload';
 
 export default function PageSettingsForm({ page, user }) {
   const [bgType, setBgType] = useState(page.bgType);
@@ -28,46 +29,12 @@ export default function PageSettingsForm({ page, user }) {
     }
   }
 
-  async function imageUpload(ev, callBackFn) {
-    const file = ev.target.files?.[0];
-
-    if (!file) {
-      console.log('No file was found');
-      return false;
-    }
-
-    const promise = new Promise((resolve, reject) => {
-      const data = new FormData();
-      data.set('file', file);
-      fetch('/api/upload', {
-        method: 'POST',
-        body: data,
-      }).then((res) => {
-        if (res.ok) {
-          res.json().then((link) => {
-            console.log(link);
-            callBackFn(link);
-            resolve(link);
-          });
-        } else {
-          reject();
-        }
-      });
-    });
-
-    await toast.promise(promise, {
-      loading: 'Uploading...',
-      success: 'Uploaded!',
-      error: 'Upload error',
-    });
-  }
-
   async function handleCoverImageChange(ev) {
-    await imageUpload(ev, (link) => setBgImage(link));
+    await fileUpload(ev, (link) => setBgImage(link));
   }
 
   async function handleAvatarImageChange(ev) {
-    await imageUpload(ev, (link) => setAvatarImage(link));
+    await fileUpload(ev, (link) => setAvatarImage(link));
   }
 
   return (
