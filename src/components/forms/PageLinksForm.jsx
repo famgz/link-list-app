@@ -61,7 +61,7 @@ export default function PageLinksForm({ page, user }) {
     fileUpload(ev, (uploadedImageUrl) => {
       setLinks((prev) => {
         const newLinks = [...prev];
-        newLinks.forEach((link, index) => {
+        newLinks.forEach((link) => {
           if (link.key === linkKeyForUpload) {
             link.icon = uploadedImageUrl;
           }
