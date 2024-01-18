@@ -188,7 +188,7 @@ export default function PageButtonsForm({ page, user }) {
               <div className='w-52 flex gap-1 items-center text-gray-700'>
                 <FontAwesomeIcon
                   icon={faArrowsUpDown}
-                  className='sortable-handle w-5 h-5 p-2 cursor-grab active:cursor-grabbing font-extralight text-gray-400'
+                  className='sortable-handle'
                 />
                 <FontAwesomeIcon icon={b.icon} className='w-5 h-5' />
                 <span className='capitalize'>{b.label}:</span>

@@ -7,7 +7,8 @@ body {
 }
 
 div,
-label, input {
+label,
+input {
   cursor: inherit;
 }
 
@@ -48,6 +49,10 @@ label, input {
 }
 
 .sortable-ghost {
-  opacity: .3;
+  opacity: 0.3;
   /* @apply bg-gray-300; */
+}
+
+.sortable-handle {
+  @apply px-2 py-4 w-5 h-5 cursor-grab active:cursor-grabbing font-extralight text-gray-400;
 }
