@@ -177,10 +177,15 @@ export default function PageButtonsForm({ page, user }) {
       <form action={saveButtons}>
         <h2 className='text-2xl font-bold mb-4'>Buttons</h2>
 
-        <ReactSortable list={activeButtons} setList={setActiveButtons}>
+        {/* Active button links */}
+        <ReactSortable
+          handle='sortable-handle'
+          list={activeButtons}
+          setList={setActiveButtons}
+        >
           {activeButtons.map((b) => (
             <div key={b.key} className='flex items-center mb-4'>
-              <div className='w-48 flex gap-2 p-2 items-center text-gray-700'>
+              <div className='sortable-handle w-48 flex gap-2 p-2 items-center text-gray-700'>
                 <FontAwesomeIcon
                   icon={faArrowsUpDown}
                   className='2-5 h-5 cursor-grab active:cursor-grabbing font-extralight text-gray-400'
@@ -206,7 +211,8 @@ export default function PageButtonsForm({ page, user }) {
           ))}
         </ReactSortable>
 
-        <div className='flex flex-wrap gap-2 mt-4 border-y py-4'>
+        {/* Available button links */}
+        <div className='flex flex-wrap gap-2 mt-6 border-y py-8'>
           {availableButtons.map((b, index) => (
             <button
               key={index}

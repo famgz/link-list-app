@@ -47,7 +47,7 @@ export async function savePageSettings(formData) {
   return true;
 }
 
-export async function savePageButtons(formData) {
+export async function savePageButtons(formData) {  // formData is from uncontrolled inputs
   mongoose.connect(process.env.MONGODB_URI);
   const session = await getServerSession(authOptions);
 
@@ -62,9 +62,22 @@ export async function savePageButtons(formData) {
       buttonsValues[key] = value;
     }
   });
+
   const dataToUpdate = { buttons: buttonsValues };
   console.log({ dataToUpdate });
   await Page.updateOne({ owner: session?.user?.email }, dataToUpdate);
 
   return true;
+}
+
+export async function savePageLinks(links) {  // links are from controlled inputs
+  mongoose.connect(process.env.MONGODB_URI)
+  const session = await getServerSession(authOptions)
+  if (!session) {
+    console.log('Not logged in')
+    return false
+  }
+
+  await Page.updateOne({owner: session?.user?.email}, {links})
+
 }
