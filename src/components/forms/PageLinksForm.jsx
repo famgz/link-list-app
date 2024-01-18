@@ -7,6 +7,7 @@ import {
   faLink,
   faPlus,
   faSave,
+  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SubmitButton from '@/components/buttons/SubmitButton';
@@ -40,6 +41,10 @@ export default function PageLinksForm({ page, user }) {
     });
   }
 
+  function removeLink(keyToRemove) {
+    setLinks((prev) => prev.filter((b) => b.key !== keyToRemove));
+  }
+
   function handleLinkChange(ev, keyOfLinkToChange, prop) {
     setLinks((prev) => {
       const newLinks = [...prev];
@@ -70,6 +75,8 @@ export default function PageLinksForm({ page, user }) {
     <SectionBox>
       <form action={save}>
         <h2 className='text-2xl font-bold mb-4'>Links</h2>
+
+        {/* Add new link button */}
         <button
           type='button'
           onClick={addNewLink}
@@ -81,24 +88,27 @@ export default function PageLinksForm({ page, user }) {
           />
           <span>Add new</span>
         </button>
-        <div>
-          <ReactSortable
-            handle='.sortable-handle'
-            list={links}
-            setList={setLinks}
-          >
-            {links.map((l) => (
-              <div
-                key={l.key}
-                className='mt-8 flex gap-2 items-center text-gray-600'
-              >
+
+        {/* Links list */}
+        <ReactSortable
+          handle='.sortable-handle'
+          list={links}
+          setList={setLinks}
+        >
+          {links.map((l) => (
+            <div key={l.key} className='flex items-stretch mt-8 text-gray-600'>
+              {/* Sortable Handle Column */}
+              <div className='self-start'>
                 <FontAwesomeIcon
                   icon={faArrowsUpDown}
-                  className='sortable-handle self-start'
+                  className='sortable-handle'
                 />
+              </div>
 
-                <div className='text-center'>
-                  <div className='bg-gray-300 w-20 h-20 inline-flex items-center justify-center mx-auto overflow-hidden'>
+              {/* Icon image Column*/}
+              <div className='grid content-between self-stretch mt-6 mr-6'>
+                <div>
+                  <div className='flex items-center justify-center bg-gray-300 w-28 h-28 shadow shadow-black/30 mx-auto rounded-full overflow-hidden'>
                     {l.icon ? (
                       <Image
                         src={l.icon}
@@ -111,7 +121,7 @@ export default function PageLinksForm({ page, user }) {
                       <FontAwesomeIcon icon={faLink} className='w-12 h-12' />
                     )}
                   </div>
-                  <div>
+                  <div className='relative'>
                     <input
                       onChange={(ev) => handleUpload(ev, l.key)}
                       type='file'
@@ -121,43 +131,65 @@ export default function PageLinksForm({ page, user }) {
                     />
                     <label
                       htmlFor={'icon' + l.key}
-                      className='border mt-2 p-2 flex items-center gap-1 rounded-md cursor-pointer'
+                      className='edit-tag bottom-0 !-right-2'
                     >
                       <FontAwesomeIcon
                         icon={faCloudArrowUp}
                         className='w-5 h-5'
                       />
-                      <span>Change icon</span>
                     </label>
                   </div>
                 </div>
-                <div className='grow'>
-                  <input
-                    value={l.title}
-                    onChange={(ev) => handleLinkChange(ev, l.key, 'title')}
-                    className='settings-input'
-                    type='text'
-                    placeholder='title'
-                  />
-                  <input
-                    value={l.subtitle}
-                    onChange={(ev) => handleLinkChange(ev, l.key, 'subtitle')}
-                    className='settings-input'
-                    type='text'
-                    placeholder='subtitle (optional)'
-                  />
-                  <input
-                    value={l.url}
-                    onChange={(ev) => handleLinkChange(ev, l.key, 'url')}
-                    className='settings-input'
-                    type='text'
-                    placeholder='url'
-                  />
+
+                {/* Delete link button */}
+                <div className='mb-2'>
+                  <button
+                    type='button'
+                    onClick={() => removeLink(l.key)}
+                    className='flex gap-2 items-center self-end text-gray-600 py-2 px-2 bg-gray-300 cursor-pointer'
+                  >
+                    <FontAwesomeIcon icon={faTrash} className='w-4 h-4' />
+                    <span className='font-bold'>remove link</span>
+                  </button>
                 </div>
               </div>
-            ))}
-          </ReactSortable>
-        </div>
+
+              {/* Input fields Column */}
+              <div className='grow'>
+                <label className='settings-label' htmlFor=''>
+                  Title
+                </label>
+                <input
+                  value={l.title}
+                  onChange={(ev) => handleLinkChange(ev, l.key, 'title')}
+                  className='settings-input'
+                  type='text'
+                  placeholder='title'
+                />
+                <label className='settings-label' htmlFor=''>
+                  Subtitle
+                </label>
+                <input
+                  value={l.subtitle}
+                  onChange={(ev) => handleLinkChange(ev, l.key, 'subtitle')}
+                  className='settings-input'
+                  type='text'
+                  placeholder='subtitle (optional)'
+                />
+                <label className='settings-label' htmlFor=''>
+                  URL
+                </label>
+                <input
+                  value={l.url}
+                  onChange={(ev) => handleLinkChange(ev, l.key, 'url')}
+                  className='settings-input'
+                  type='text'
+                  placeholder='url'
+                />
+              </div>
+            </div>
+          ))}
+        </ReactSortable>
         <SubmitButton className='max-w-[200px] mx-auto'>
           <FontAwesomeIcon icon={faSave} className='w-5 h-5' />
           <span>Save</span>

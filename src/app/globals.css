@@ -45,7 +45,7 @@ input {
 }
 
 .settings-input {
-  @apply bg-gray-100 w-full block p-2 mb-2;
+  @apply bg-gray-100 w-full inline-block p-2 mb-2;
 }
 
 .sortable-ghost {
@@ -55,4 +55,8 @@ input {
 
 .sortable-handle {
   @apply px-2 py-4 w-5 h-5 cursor-grab active:cursor-grabbing font-extralight text-gray-400;
+}
+
+.edit-tag {
+  @apply absolute flex items-center justify-center bottom-0 -right-0 cursor-pointer bg-white w-10 h-10 text-gray-700 rounded-full shadow shadow-black/30;
 }

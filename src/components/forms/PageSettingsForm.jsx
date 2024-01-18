@@ -42,7 +42,7 @@ export default function PageSettingsForm({ page, user }) {
       <SectionBox>
         <form action={saveBaseSettings}>
           <div
-            className='bg-gray-300 min-h-[300px] py-4 -m-4 flex justify-center items-center bg-cover bg-center'
+            className='flex justify-center items-center bg-gray-300 min-h-[300px] py-4 -m-4 bg-cover bg-center'
             style={
               bgType === 'color'
                 ? { backgroundColor: bgColor }
@@ -104,11 +104,7 @@ export default function PageSettingsForm({ page, user }) {
               />
             </div>
 
-            <label
-              htmlFor='avatarIn'
-              className='absolute flex items-center justify-center bottom-0 -right-0 cursor-pointer bg-white w-10 h-10 text-gray-700 rounded-full shadow shadow-black/30'
-              type='button'
-            >
+            <label htmlFor='avatarIn' className='edit-tag' type='button'>
               <FontAwesomeIcon icon={faCloudArrowUp} className='h-6 w-6' />
             </label>
             <input
