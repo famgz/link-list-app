@@ -179,16 +179,16 @@ export default function PageButtonsForm({ page, user }) {
 
         {/* Active button links */}
         <ReactSortable
-          handle='sortable-handle'
+          handle='.sortable-handle'
           list={activeButtons}
           setList={setActiveButtons}
         >
           {activeButtons.map((b) => (
             <div key={b.key} className='flex items-center mb-4'>
-              <div className='sortable-handle w-48 flex gap-2 p-2 items-center text-gray-700'>
+              <div className='w-52 flex gap-1 items-center text-gray-700'>
                 <FontAwesomeIcon
                   icon={faArrowsUpDown}
-                  className='2-5 h-5 cursor-grab active:cursor-grabbing font-extralight text-gray-400'
+                  className='sortable-handle w-5 h-5 p-2 cursor-grab active:cursor-grabbing font-extralight text-gray-400'
                 />
                 <FontAwesomeIcon icon={b.icon} className='w-5 h-5' />
                 <span className='capitalize'>{b.label}:</span>

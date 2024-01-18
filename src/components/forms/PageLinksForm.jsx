@@ -92,7 +92,7 @@ export default function PageLinksForm({ page, user }) {
                 key={l.key}
                 className='mt-8 flex gap-2 items-center text-gray-600'
               >
-                <div className='sortable-handle'>
+                <div className='sortable-handle px-2 py-4 self-start'>
                   <FontAwesomeIcon
                     icon={faArrowsUpDown}
                     className='2-5 h-5 cursor-grab active:cursor-grabbing font-extralight text-gray-400'
