@@ -50,7 +50,7 @@ export default async function AppTemplate({ children, ...rest }) {
             {page && (
               <Link
                 target='_blank'
-                href={'/' + page.uri}
+                href={'/page/' + page.uri}
                 className='flex items-center justify-center gap-1 mt-4'
               >
                 <FontAwesomeIcon
