@@ -2,7 +2,7 @@
 
 import { savePageSettings } from '@/actions/pageActions';
 import SubmitButton from '@/components/buttons/SubmitButton';
-import RadioTogglers from '@/components/formItems/radioTogglers';
+import RadioTogglers from '@/components/formItems/RadioTogglers';
 import {
   faCloudArrowUp,
   faImage,
