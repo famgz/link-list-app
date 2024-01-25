@@ -47,12 +47,12 @@ export default function Chart({ data }) {
 
   return (
     <div>
-      <ResponsiveContainer width='100%' height={200}>
+      <ResponsiveContainer width='100%' height={200} >
         <LineChart
           width={730}
           height={250}
           data={fullDaysRangeData}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 5, right: 20, left: -15, bottom: 5 }}
         >
           <CartesianGrid vertical={false} strokeWidth='2' stroke='#f5f5f5' />
           <XAxis
@@ -61,12 +61,14 @@ export default function Chart({ data }) {
             tickLine={false}
             tickMargin={10}
             tick={{ fill: '#aaa' }}
-          />
+            fontSize={12}
+            />
           <YAxis
             axisLine={false}
             tickLine={false}
             tickMargin={10}
             tick={{ fill: '#aaa' }}
+            fontSize={12}
           />
           <Tooltip />
           <Line

@@ -96,26 +96,27 @@ export default function PageLinksForm({ page, user }) {
           setList={setLinks}
         >
           {links.map((l) => (
-            <div key={l.key} className='flex items-stretch mt-8 text-gray-600'>
-              {/* Sortable Handle Column */}
-              <div className='self-start'>
-                <FontAwesomeIcon
-                  icon={faArrowsUpDown}
-                  className='sortable-handle'
-                />
-              </div>
-
+            <div
+              key={l.key}
+              className='md:flex items-stretch mt-14 text-gray-600'
+            >
               {/* Icon image Column*/}
-              <div className='grid content-between self-stretch mt-6 mr-6'>
-                <div>
-                  <div className='flex items-center justify-center bg-gray-300 w-28 h-28 shadow shadow-black/30 mx-auto rounded-full overflow-hidden'>
+              <div className='grid gap-4 md:gap-0 content-between self-stretch md:m-6 !mb-0'>
+                <div className='relative w-28 h-28 mx-auto'>
+                  {/* Sortable Handle Column */}
+                  <div className='self-start absolute -top-8 -left-10 z-50 '>
+                    <FontAwesomeIcon
+                      icon={faArrowsUpDown}
+                      className='sortable-handle !p-6'
+                    />
+                  </div>
+                  <div className='flex relative items-center justify-center bg-gray-300 w-28 h-28 shadow shadow-black/30 mx-auto rounded-full overflow-hidden'>
                     {l.icon ? (
                       <Image
                         src={l.icon}
                         alt='icon'
-                        width={64}
-                        height={64}
-                        className='w-full h-full object-cover'
+                        fill={true}
+                        className='object-cover'
                       />
                     ) : (
                       <FontAwesomeIcon icon={faLink} className='w-12 h-12' />
@@ -146,15 +147,17 @@ export default function PageLinksForm({ page, user }) {
                   <button
                     type='button'
                     onClick={() => removeLink(l.key)}
-                    className='flex gap-2 items-center self-end text-gray-600 py-2 px-2 bg-gray-300 cursor-pointer'
+                    className='flex w-full gap-2 justify-center items-center self-end text-gray-600 py-2 px-2 bg-gray-300 cursor-pointer'
                   >
-                    <FontAwesomeIcon icon={faTrash} className='w-4 h-4' />
-                    <span className='font-bold'>remove link</span>
+                    <FontAwesomeIcon icon={faTrash} className='w-3 h-3' />
+                    <span className='font-bold text-xs whitespace-nowrap'>
+                      remove link
+                    </span>
                   </button>
                 </div>
               </div>
 
-              {/* Input fields Column */}
+              {/* Input fields */}
               <div className='grow'>
                 <label className='settings-label' htmlFor=''>
                   Title
@@ -190,7 +193,7 @@ export default function PageLinksForm({ page, user }) {
             </div>
           ))}
         </ReactSortable>
-        <SubmitButton className='max-w-[200px] mx-auto'>
+        <SubmitButton className='max-w-[200px] mx-auto my-4'>
           <FontAwesomeIcon icon={faSave} className='w-5 h-5' />
           <span>Save</span>
         </SubmitButton>

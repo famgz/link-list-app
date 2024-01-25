@@ -1,4 +1,5 @@
 import { getButtonIcon } from '@/libs/allButtons';
+import { Event } from '@/models/Event';
 import { Page } from '@/models/Page';
 import { User } from '@/models/User';
 import { faLink, faLocationDot } from '@fortawesome/free-solid-svg-icons';
@@ -10,11 +11,11 @@ import Link from 'next/link';
 function buttonLink(key, value) {
   switch (key) {
     case 'mobile':
-      return 'tel:'+value
+      return 'tel:' + value;
     case 'email':
-      return 'mailto:'+value
+      return 'mailto:' + value;
     default:
-      return value
+      return value;
   }
 }
 
@@ -40,16 +41,21 @@ export default async function UserPage({ params }) {
 
   const user = await User.findOne({ email: page.owner });
 
+  await Event.create({ uri, page: page.uri, type: 'view' });
+
   return (
     <div className='bg-blue-950 text-white min-h-screen'>
+      {/* Background */}
       <div
-        className=' bg-gray-300 h-36 bg-cover bg-center'
+        className=' bg-gray-300 h-44 bg-cover bg-center'
         style={
           bgType === 'color'
             ? { backgroundColor: bgColor }
             : { backgroundImage: `url(${bgImage})` }
         }
       ></div>
+
+      {/* Profile image */}
       <div className='relative w-36 h-36 mx-auto p-2 -mt-16 rounded-full overflow-hidden'>
         <Image
           src={user.image}
@@ -58,6 +64,7 @@ export default async function UserPage({ params }) {
           alt='avatar'
         />
       </div>
+      {/* Bio */}
       <h2 className='text-2xl text-center my-2'>{displayName}</h2>
       <h3 className='flex justify-center items-center gap-2 text-white/70 text-md'>
         <FontAwesomeIcon icon={faLocationDot} className='w-4 h-4' />
@@ -66,10 +73,12 @@ export default async function UserPage({ params }) {
       <div className='max-w-xs mx-auto text-center mt-2'>
         <p>{bio}</p>
       </div>
+
+      {/* Buttons */}
       <div className='flex gap-2 justify-center mt-4'>
         {Object.entries(buttons).map(([k, v]) => (
           <Link
-            href={buttonLink(k,v)}
+            href={buttonLink(k, v)}
             key={k}
             className='flex items-center justify-center gap-2 p-2 bg-white text-blue-950 whitespace-nowrap rounded-full font-bold'
           >
@@ -77,14 +86,28 @@ export default async function UserPage({ params }) {
           </Link>
         ))}
       </div>
+
+      {/* Links */}
       <div className='grid md:grid-cols-2 gap-6 py-4 px-8 max-w-2xl mx-auto mt-4'>
-        {links.map((l) => (
-          <Link href={l.url} key={l.key} className='bg-indigo-800 p-2 flex'>
+        {links.map((link) => (
+          <Link
+            ping={
+              process.env.NEXTAUTH_URL +
+              '/api/click/?url=' +
+              btoa(link.url) +
+              '&page=' +
+              page.uri
+            }
+            target='_blank'
+            href={link.url}
+            key={link.key}
+            className='bg-indigo-800 p-2 flex'
+          >
             <div className='relative '>
               <div className='flex items-center overflow-hidden justify-center w-16 h-16 bg-blue-700  relative -left-4 grow'>
-                {l.icon ? (
+                {link.icon ? (
                   <Image
-                    src={l.icon}
+                    src={link.icon}
                     alt='icon'
                     fill={true}
                     className='object-cover'
@@ -96,9 +119,9 @@ export default async function UserPage({ params }) {
             </div>
             <div className='flex items-center justify-center'>
               <div>
-                <h3>{l.title}</h3>
+                <h3>{link.title}</h3>
                 <p className='text-white/50 h-6 overflow-hidden'>
-                  {l.subtitle}
+                  {link.subtitle}
                 </p>
               </div>
             </div>

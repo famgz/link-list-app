@@ -60,3 +60,12 @@ input {
 .edit-tag {
   @apply absolute flex items-center justify-center bottom-0 -right-0 cursor-pointer bg-white w-10 h-10 text-gray-700 rounded-full shadow shadow-black/30;
 }
+
+input#navCb:checked ~ aside {
+  left: 0;
+}
+
+input#navCb:checked ~ .backdrop {
+  display: block;
+}
+

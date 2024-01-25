@@ -32,10 +32,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import SubmitButton from '../buttons/SubmitButton';
 import { ReactSortable } from 'react-sortablejs';
-import {allButtons} from '@/libs/allButtons'
-
-
-
+import { allButtons } from '@/libs/allButtons';
 
 export default function PageButtonsForm({ page, user }) {
   const pageSavedButtonKeys = Object.keys(page.buttons);
@@ -77,8 +74,8 @@ export default function PageButtonsForm({ page, user }) {
           setList={setActiveButtons}
         >
           {activeButtons.map((b) => (
-            <div key={b.key} className='flex items-center mb-4'>
-              <div className='w-52 flex gap-1 items-center text-gray-700'>
+            <div key={b.key} className='md:flex items-center mb-4'>
+              <div className='w-36 flex gap-1 items-center text-gray-700'>
                 <FontAwesomeIcon
                   icon={faArrowsUpDown}
                   className='sortable-handle'
@@ -86,35 +83,39 @@ export default function PageButtonsForm({ page, user }) {
                 <FontAwesomeIcon icon={b.icon} className='w-5 h-5' />
                 <span className='capitalize'>{b.label}:</span>
               </div>
-              <input
-                name={b.key}
-                placeholder={b.placeholder}
-                className='settings-input !mb-0'
-                defaultValue={page.buttons[b.key]}
-                type='text'
-              />
-              <button
-                onClick={() => removeButton(b.key)}
-                type='button'
-                className='text-gray-700 py-2 px-4 bg-gray-300 cursor-pointer'
-              >
-                <FontAwesomeIcon icon={faTrash} className='w-4 h-4' />
-              </button>
+              <div className='flex grow'>
+                <input
+                  name={b.key}
+                  placeholder={b.placeholder}
+                  className='settings-input !mb-0'
+                  defaultValue={page.buttons[b.key]}
+                  type='text'
+                />
+                <button
+                  onClick={() => removeButton(b.key)}
+                  type='button'
+                  className='text-gray-700 py-2 px-4 bg-gray-300 cursor-pointer'
+                >
+                  <FontAwesomeIcon icon={faTrash} className='w-4 h-4' />
+                </button>
+              </div>
             </div>
           ))}
         </ReactSortable>
 
         {/* Available button links */}
-        <div className='flex flex-wrap gap-2 mt-6 border-y py-8'>
+        <div className='flex justify-center flex-wrap gap-2 mt-6 border-y py-8'>
           {availableButtons.map((b, index) => (
             <button
               key={index}
               type='button'
               onClick={() => addButtonToProfile(b)}
-              className='flex items-center gap-1 p-2 bg-gray-200 text-gray-700'
+              className='flex items-center justify-between grow max-w-[150px] gap-1 p-2 bg-gray-200 text-gray-700'
             >
-              <FontAwesomeIcon icon={b.icon} className='w-5 h-5' />
-              <span className='capitalize'>{b.label}</span>
+              <div className='flex items-center gap-2'>
+                <FontAwesomeIcon icon={b.icon} className='w-5 h-5' />
+                <span className='capitalize'>{b.label}</span>
+              </div>
               <FontAwesomeIcon icon={faPlus} className='w-4 h-4' />
             </button>
           ))}
