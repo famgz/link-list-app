@@ -50,7 +50,10 @@ export default async function AnalyticsPage(params) {
   );
   */
 
-  const sortedGroupedViews = groupedViews;
+  const sortedGroupedViews = groupedViews.map((o) => ({
+    date: o._id,
+    views: o.count,
+  }));
 
   const clicks = await Event.find({ page: page.uri, type: 'click' });
 
@@ -58,18 +61,13 @@ export default async function AnalyticsPage(params) {
     <div>
       <SectionBox>
         <h2 className='text-xl mb-6'>Views</h2>
-        <Chart
-          data={sortedGroupedViews.map((o) => ({
-            date: o._id,
-            views: o.count,
-          }))}
-        />
+        <Chart data={sortedGroupedViews} />
       </SectionBox>
       <SectionBox>
         <h2 className='text-xl mb-6'>Clicks</h2>
-        {page.links.map((link) => (
+        {page.links.map((link, index) => (
           <div
-            key={link._id}
+            key={link.key}
             className='flex flex-col md:flex-row gap-4 md:items-center border-t border-gray-200 py-4'
           >
             <div className='text-blue-500 pl-4'>

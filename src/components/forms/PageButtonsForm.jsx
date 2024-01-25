@@ -107,7 +107,7 @@ export default function PageButtonsForm({ page, user }) {
         <div className='flex justify-center flex-wrap gap-2 mt-6 border-y py-8'>
           {availableButtons.map((b, index) => (
             <button
-              key={index}
+              key={b.key}
               type='button'
               onClick={() => addButtonToProfile(b)}
               className='flex items-center justify-between grow max-w-[150px] gap-1 p-2 bg-gray-200 text-gray-700'
