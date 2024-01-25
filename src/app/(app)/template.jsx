@@ -1,7 +1,6 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import '@/app/globals.css';
 import AppSidebar from '@/components/layout/AppSidebar';
-import SectionBox from '@/components/layout/SectionBox';
 import { Page } from '@/models/Page';
 import { faBars, faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

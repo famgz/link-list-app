@@ -68,4 +68,3 @@ input#navCb:checked ~ aside {
 input#navCb:checked ~ .backdrop {
   display: block;
 }
-

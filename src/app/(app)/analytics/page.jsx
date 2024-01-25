@@ -5,7 +5,7 @@ import { Event } from '@/models/Event';
 import { Page } from '@/models/Page';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { formatISO9075, isToday } from 'date-fns';
+import { isToday } from 'date-fns';
 import mongoose from 'mongoose';
 import { getServerSession } from 'next-auth';
 

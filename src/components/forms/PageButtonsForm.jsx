@@ -2,37 +2,18 @@
 
 import { savePageButtons } from '@/actions/pageActions';
 import SectionBox from '@/components/layout/SectionBox';
-import {
-  faDiscord,
-  faFacebook,
-  faGithub,
-  faInstagram,
-  faLinkedin,
-  faPinterest,
-  faReddit,
-  faSkype,
-  faSteam,
-  faTelegram,
-  faTiktok,
-  faTwitch,
-  faTwitter,
-  faWhatsapp,
-  faYoutube,
-} from '@fortawesome/free-brands-svg-icons';
+import { allButtons } from '@/libs/allButtons';
 import {
   faArrowsUpDown,
-  faEnvelope,
-  faMobile,
   faPlus,
   faSave,
-  faTrash,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import SubmitButton from '../buttons/SubmitButton';
 import { ReactSortable } from 'react-sortablejs';
-import { allButtons } from '@/libs/allButtons';
+import SubmitButton from '../buttons/SubmitButton';
 
 export default function PageButtonsForm({ page, user }) {
   const pageSavedButtonKeys = Object.keys(page.buttons);

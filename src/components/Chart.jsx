@@ -1,16 +1,15 @@
 'use client';
 
+import { addDays, differenceInDays, formatISO9075, parseISO } from 'date-fns';
 import {
   CartesianGrid,
-  Legend,
   Line,
   LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
+  YAxis
 } from 'recharts';
-import { addDays, differenceInDays, formatISO9075, parseISO } from 'date-fns';
 
 export default function Chart({ data }) {
   const xLabelKey = Object.keys(data[0]).find((key) => key !== 'date');
