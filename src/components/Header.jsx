@@ -33,7 +33,7 @@ export default async function Header() {
             // Logged in buttons
             <>
               <Link href={'/account'}>
-                Hello, <span className=''>{session?.user?.name}</span>
+                Hello, <span className=''>{session?.user?.name.split(' ')?.[0]}</span>
               </Link>
               <LogoutButton />
             </>

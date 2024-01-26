@@ -29,21 +29,21 @@ export default function HeroForm({ user }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className='inline-flex items-center bg-white shadow-lg shadow-gray-700/30'
+      className='flex items-center justify-between bg-white shadow-lg shadow-gray-700/30'
     >
-      <span className='bg-white py-4 pl-4'>linklist.to /</span>
+      <span className='py-4 pl-4 whitespace-nowrap'>linklist.to /</span>
       <input
         type='text'
         name='username'
         id='username'
-        className='p-2 mx-2 grow bg-gray-50 font-bold shadow-[inset_0_2px_4px_0_rgb(0,0,0,0.2)]'
+        className='p-2 mx-2 w-full bg-gray-50 font-bold shadow-[inset_0_2px_4px_0_rgb(0,0,0,0.2)]'
         placeholder='username?'
         required={true}
         maxLength={20}
         minLength={3}
       />
-      <button type='submit' className='bg-blue-500 text-white py-4 px-6'>
-        Join for Free
+      <button type='submit' className='bg-blue-500 text-white py-4 px-6 whitespace-nowrap font-extrabold'>
+        Join
       </button>
     </form>
   );
