@@ -5,7 +5,7 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';
-import SubmitButton from '../buttons/SubmitButton';
+import SubmitButton from '@/components/buttons/SubmitButton';
 
 export default function UsernameForm({ desiredUsername }) {
   const [taken, setTaken] = useState(false);

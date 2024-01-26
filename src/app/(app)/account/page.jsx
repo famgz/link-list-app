@@ -8,7 +8,7 @@ import PageSettingsForm from '@/components/forms/PageSettingsForm';
 import PageButtonsForm from '@/components/forms/PageButtonsForm';
 import PageLinksForm from '@/components/forms/PageLinksForm';
 
-async function AccountPage({ searchParams, ...rest }) {
+export default async function AccountPage({ searchParams, ...rest }) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
   const desiredUsername = searchParams?.desiredUsername;
@@ -21,16 +21,18 @@ async function AccountPage({ searchParams, ...rest }) {
   await mongoose.connect(process.env.MONGODB_URI);
 
   let page = await Page.findOne({ owner: session?.user?.email });
-  page = JSON.parse(JSON.stringify(page));
 
   // Logged in but no page name was chosen yet
   if (!page) {
     return (
-      <div>
+      <div className='mt-8'>
         <UsernameForm desiredUsername={desiredUsername} />
       </div>
     );
   }
+
+  // convert to plain object
+  page = JSON.parse(JSON.stringify(page));
 
   return (
     <>
@@ -40,5 +42,3 @@ async function AccountPage({ searchParams, ...rest }) {
     </>
   );
 }
-
-export default AccountPage;

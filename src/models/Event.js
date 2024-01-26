@@ -1,10 +1,12 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models } from 'mongoose';
 
-const EventSchema = new Schema({
-  type: String, // click or view
-  page: String, // username
-  uri: String, // /pagename | https://
+const EventSchema = new Schema(
+  {
+    type: String, // click or view
+    page: String, // username
+    uri: String, // /pagename | https://
+  },
+  { timestamps: true }
+);
 
-} ,{timestamps: true})
-
-export const Event = models?.Event || model('Event', EventSchema)
+export const Event = models?.Event || model('Event', EventSchema);
