@@ -4,7 +4,7 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from '@/libs/mongoClient';
 
 export const authOptions = {
-  // secret: process.env.NEXTAUTH_SECRET, // no need to be explicit if have NEXTAUTH_SECRET in .env
+  secret: process.env.NEXTAUTH_SECRET, // no need to be explicit if have NEXTAUTH_SECRET in .env
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
