@@ -8,12 +8,12 @@ const PageSchema = new Schema(
     location: { type: String, default: '' },
     bio: { type: String, default: '' },
     bgType: { type: String, enum: ['color', 'image'], default: 'color' },
-    bgColor: { type: String, default: '#000' },
+    bgColor: { type: String, default: '#8db7fa' },
     bgImage: { type: String, default: '' },
     buttons: { type: Object, default: {} },
     links: { type: Object, default: [] },
   },
-  { timestamps: true }
+  { timestamps: true, minimize: false }
 );
 
 export const Page = models?.Page || model('Page', PageSchema);

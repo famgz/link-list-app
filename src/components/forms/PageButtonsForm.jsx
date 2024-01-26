@@ -16,7 +16,7 @@ import { ReactSortable } from 'react-sortablejs';
 import SubmitButton from '../buttons/SubmitButton';
 
 export default function PageButtonsForm({ page, user }) {
-  const pageSavedButtonKeys = Object.keys(page.buttons);
+  const pageSavedButtonKeys = Object.keys(page?.buttons || {});
   const pageSavedButtonsInfo = pageSavedButtonKeys.map((k) =>
     allButtons.find((b) => b.key === k)
   );
