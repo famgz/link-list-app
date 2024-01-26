@@ -16,10 +16,10 @@ export default async function Header() {
             <FontAwesomeIcon icon={faLink} className='text-blue-500' />
             <span className='font-bold'>LinkList</span>
           </Link>
-          <nav className='flex items-center gap-4 text-slate-500 text-sm'>
-            <Link href={'/about'}>About</Link>
-            <Link href={'/pricing'}>Pricing</Link>
-            <Link href={'/contact'}>Contact</Link>
+          <nav className='hidden md:flex items-center gap-4 text-slate-500 text-sm'>
+            <Link href={'#'}>About</Link>
+            <Link href={'#'}>Pricing</Link>
+            <Link href={'#'}>Contact</Link>
           </nav>
         </div>
         <nav className='flex items-center gap-4 text-sm text-slate-500'>
@@ -27,14 +27,13 @@ export default async function Header() {
             // Not logged in buttons
             <>
               <Link href={'/login'}>Sign In</Link>
-              <Link href={'/login'}>Create Account</Link>
+              {/* <Link href={'/login'}>Create Account</Link> */}
             </>
           ) : (
             // Logged in buttons
             <>
               <Link href={'/account'}>
-                Hello,{' '}
-                <span className=''>{session?.user?.name}</span>
+                Hello, <span className=''>{session?.user?.name}</span>
               </Link>
               <LogoutButton />
             </>
